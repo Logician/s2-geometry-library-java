@@ -1,21 +1,12 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.0'
-    }
-}
-
 apply plugin: 'android-library'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion = '19.1'
+    buildToolsVersion '19.1'
 
     sourceSets {
         defaultConfig {
-            testApplicationId 'com.google.common.geometry.tests'
+            testApplicationId 'com.google.testing.util'
         }
 
         main {
@@ -31,6 +22,20 @@ android {
 
         instrumentTest.setRoot('tests')
         instrumentTest.java.srcDirs = ['tests']
+    }
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 17
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
 }
 
